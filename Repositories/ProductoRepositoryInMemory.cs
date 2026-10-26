@@ -2,17 +2,14 @@ using TiendaProductos.Api.Models;
 
 namespace TiendaProductos.Api.Repositories;
 
-/// <summary>
-/// Implementación en memoria de <see cref="IProductoRepository"/>.
-/// </summary>
-/// <remarks>
-/// El repositorio se registra como <b>Scoped</b> (una instancia por request HTTP).
-/// Si la lista fuera un campo de instancia, cada request arrancaría con el seed data
-/// y un POST seguido de un GET no encontraría nada: los datos no sobrevivirían entre
-/// llamadas. Por eso el almacenamiento es <c>static</c> (compartido por todo el proceso)
-/// mientras la instancia del repositorio sigue siendo Scoped, como pide la consigna.
-/// En un repositorio real con base de datos ese estado lo aporta la DB.
-/// </remarks>
+// Implementación en memoria de IProductoRepository.
+//
+// El repositorio se registra como Scoped (una instancia por request HTTP).
+// Si la lista fuera un campo de instancia, cada request arrancaría con el seed data
+// y un POST seguido de un GET no encontraría nada: los datos no sobrevivirían entre
+// llamadas. Por eso el almacenamiento es static (compartido por todo el proceso)
+// mientras la instancia del repositorio sigue siendo Scoped, como pide la consigna.
+// En un repositorio real con base de datos ese estado lo aporta la DB.
 public class ProductoRepositoryInMemory : IProductoRepository
 {
     // Cantidad fija y conocida: List<T> + seed data en memoria.
@@ -30,7 +27,6 @@ public class ProductoRepositoryInMemory : IProductoRepository
 
     private static int _ultimoId = _productos.Max(p => p.Id);
 
-    /// <inheritdoc />
     public List<Producto> ObtenerTodos()
     {
         lock (_candado)
@@ -40,7 +36,6 @@ public class ProductoRepositoryInMemory : IProductoRepository
         }
     }
 
-    /// <inheritdoc />
     public Producto? ObtenerPorId(int id)
     {
         lock (_candado)
@@ -49,7 +44,6 @@ public class ProductoRepositoryInMemory : IProductoRepository
         }
     }
 
-    /// <inheritdoc />
     public Producto Agregar(Producto producto)
     {
         ArgumentNullException.ThrowIfNull(producto);
@@ -62,7 +56,6 @@ public class ProductoRepositoryInMemory : IProductoRepository
         }
     }
 
-    /// <inheritdoc />
     public bool Actualizar(Producto producto)
     {
         ArgumentNullException.ThrowIfNull(producto);
@@ -85,7 +78,6 @@ public class ProductoRepositoryInMemory : IProductoRepository
         }
     }
 
-    /// <inheritdoc />
     public bool Eliminar(int id)
     {
         lock (_candado)

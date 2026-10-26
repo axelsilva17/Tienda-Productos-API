@@ -1,29 +1,27 @@
 namespace TiendaProductos.Api.Dtos;
 
-/// <summary>
-/// DTO de salida: la forma en que la API expone un producto.
-/// El controlador retorna SIEMPRE este tipo, nunca la entidad <see cref="Models.Producto"/>.
-/// Así el contrato público no queda atado al modelo interno.
-/// </summary>
+// DTO de salida: la forma en que la API expone un producto.
+// El controlador retorna SIEMPRE este tipo, nunca la entidad Models.Producto.
+// Así el contrato público no queda atado al modelo interno.
 public class ProductoDto
 {
-    /// <summary>Identificador único del producto.</summary>
-    /// <example>1</example>
+    // Identificador único del producto.
+    // Ejemplo: 1.
     public int Id { get; set; }
 
-    /// <summary>Nombre comercial del producto.</summary>
-    /// <example>Teclado mecánico</example>
+    // Nombre comercial del producto.
+    // Ejemplo: Teclado mecánico.
     public string Nombre { get; set; } = string.Empty;
 
-    /// <summary>Precio unitario en pesos.</summary>
-    /// <example>45999.90</example>
+    // Precio unitario en pesos.
+    // Ejemplo: 45999.90.
     public decimal Precio { get; set; }
 
-    /// <summary>Categoría del producto.</summary>
-    /// <example>Periféricos</example>
+    // Categoría del producto.
+    // Ejemplo: Periféricos.
     public string Categoria { get; set; } = string.Empty;
 
-    /// <summary>Indica si el producto está disponible para la venta.</summary>
-    /// <example>true</example>
-    public bool Activo { get; set; }
+    // Indica si el producto está disponible para la venta.
+    // Ejemplo: true.
+    public bool Activo { get; set; } = true;
 }

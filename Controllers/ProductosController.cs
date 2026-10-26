@@ -4,11 +4,9 @@ using TiendaProductos.Api.Services;
 
 namespace TiendaProductos.Api.Controllers;
 
-/// <summary>
-/// Endpoints REST del catálogo de productos (Presentation Layer).
-/// No contiene lógica de negocio: valida el contrato HTTP, delega al servicio
-/// y traduce el resultado a códigos de estado con <see cref="IActionResult"/>.
-/// </summary>
+// Endpoints REST del catálogo de productos (Presentation Layer).
+// No contiene lógica de negocio: valida el contrato HTTP, delega al servicio
+// y traduce el resultado a códigos de estado con IActionResult.
 [ApiController]
 [Route("api/productos")]
 [Produces("application/json")]
@@ -21,8 +19,8 @@ public class ProductosController : ControllerBase
         _service = service;
     }
 
-    /// <summary>Obtiene todos los productos del catálogo.</summary>
-    /// <response code="200">Lista de productos (puede estar vacía).</response>
+    // Obtiene todos los productos del catálogo.
+    // 200: Lista de productos (puede estar vacía).
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ProductoDto>), StatusCodes.Status200OK)]
     public IActionResult ObtenerTodos()
@@ -30,10 +28,10 @@ public class ProductosController : ControllerBase
         return Ok(_service.ObtenerTodos());
     }
 
-    /// <summary>Obtiene un producto por su Id.</summary>
-    /// <param name="id">Id del producto.</param>
-    /// <response code="200">Producto encontrado.</response>
-    /// <response code="404">No existe un producto con ese Id.</response>
+    // Obtiene un producto por su Id.
+    // id: Id del producto.
+    // 200: Producto encontrado.
+    // 404: No existe un producto con ese Id.
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(ProductoDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -49,10 +47,10 @@ public class ProductosController : ControllerBase
         return Ok(producto);
     }
 
-    /// <summary>Crea un producto nuevo.</summary>
-    /// <param name="dto">Datos del producto a crear.</param>
-    /// <response code="201">Producto creado. El header Location apunta al recurso.</response>
-    /// <response code="400">Datos inválidos (Data Annotations).</response>
+    // Crea un producto nuevo.
+    // dto: Datos del producto a crear.
+    // 201: Producto creado. El header Location apunta al recurso.
+    // 400: Datos inválidos (Data Annotations).
     [HttpPost]
     [ProducesResponseType(typeof(ProductoDto), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -67,12 +65,12 @@ public class ProductosController : ControllerBase
             creado);
     }
 
-    /// <summary>Actualiza un producto existente.</summary>
-    /// <param name="id">Id del producto a actualizar.</param>
-    /// <param name="dto">Nuevos datos del producto.</param>
-    /// <response code="200">Producto actualizado.</response>
-    /// <response code="400">Datos inválidos (Data Annotations).</response>
-    /// <response code="404">No existe un producto con ese Id.</response>
+    // Actualiza un producto existente.
+    // id: Id del producto a actualizar.
+    // dto: Nuevos datos del producto.
+    // 200: Producto actualizado.
+    // 400: Datos inválidos (Data Annotations).
+    // 404: No existe un producto con ese Id.
     [HttpPut("{id:int}")]
     [ProducesResponseType(typeof(ProductoDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -89,10 +87,10 @@ public class ProductosController : ControllerBase
         return Ok(actualizado);
     }
 
-    /// <summary>Elimina un producto por su Id.</summary>
-    /// <param name="id">Id del producto a eliminar.</param>
-    /// <response code="204">Producto eliminado.</response>
-    /// <response code="404">No existe un producto con ese Id.</response>
+    // Elimina un producto por su Id.
+    // id: Id del producto a eliminar.
+    // 204: Producto eliminado.
+    // 404: No existe un producto con ese Id.
     [HttpDelete("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

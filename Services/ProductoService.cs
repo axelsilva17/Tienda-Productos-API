@@ -4,16 +4,12 @@ using TiendaProductos.Api.Repositories;
 
 namespace TiendaProductos.Api.Services;
 
-/// <summary>
-/// Implementación de la capa de negocio.
-/// Responsabilidades:
-/// <list type="bullet">
-///   <item>Transformar entre entidades y DTOs (mapeo).</item>
-///   <item>Aplicar reglas de negocio (normalizar textos, decidir qué se actualiza).</item>
-///   <item>Traducir "no encontrado" a <c>null</c>/<c>false</c>, que el controlador
-///         convierte en 404. El servicio no conoce HTTP.</item>
-/// </list>
-/// </summary>
+// Implementación de la capa de negocio.
+// Responsabilidades:
+// - Transformar entre entidades y DTOs (mapeo).
+// - Aplicar reglas de negocio (normalizar textos, decidir qué se actualiza).
+// - Traducir "no encontrado" a null/false, que el controlador convierte en 404.
+//   El servicio no conoce HTTP.
 public class ProductoService : IProductoService
 {
     private readonly IProductoRepository _repository;
@@ -24,7 +20,6 @@ public class ProductoService : IProductoService
         _repository = repository;
     }
 
-    /// <inheritdoc />
     public List<ProductoDto> ObtenerTodos()
     {
         return _repository.ObtenerTodos()
@@ -32,7 +27,6 @@ public class ProductoService : IProductoService
             .ToList();
     }
 
-    /// <inheritdoc />
     public ProductoDto? ObtenerPorId(int id)
     {
         var producto = _repository.ObtenerPorId(id);
@@ -40,7 +34,6 @@ public class ProductoService : IProductoService
         return producto is null ? null : ADto(producto);
     }
 
-    /// <inheritdoc />
     public ProductoDto Crear(CreateProductoDto dto)
     {
         ArgumentNullException.ThrowIfNull(dto);
@@ -51,7 +44,6 @@ public class ProductoService : IProductoService
         return ADto(creado);
     }
 
-    /// <inheritdoc />
     public ProductoDto? Actualizar(int id, CreateProductoDto dto)
     {
         ArgumentNullException.ThrowIfNull(dto);
@@ -62,7 +54,6 @@ public class ProductoService : IProductoService
         return _repository.Actualizar(producto) ? ADto(producto) : null;
     }
 
-    /// <inheritdoc />
     public bool Eliminar(int id)
     {
         return _repository.Eliminar(id);

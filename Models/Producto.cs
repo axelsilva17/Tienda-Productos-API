@@ -1,10 +1,8 @@
 namespace TiendaProductos.Api.Models;
 
-/// <summary>
-/// Entidad de dominio que representa un producto del catálogo.
-/// Es la pieza compartida por las tres capas: el repositorio la guarda,
-/// el servicio la transforma a DTO y el controlador nunca la expone.
-/// </summary>
+// Entidad de dominio que representa un producto del catálogo.
+// Es la pieza compartida por las tres capas: el repositorio la guarda,
+// el servicio la transforma a DTO y el controlador nunca la expone.
 public class Producto
 {
     public int Id { get; set; }

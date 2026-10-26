@@ -2,24 +2,22 @@ using TiendaProductos.Api.Dtos;
 
 namespace TiendaProductos.Api.Services;
 
-/// <summary>
-/// Contrato de la capa de negocio (Business Layer).
-/// Trabaja exclusivamente con DTOs: la entidad <c>Producto</c> no sale de acá.
-/// </summary>
+// Contrato de la capa de negocio (Business Layer).
+// Trabaja exclusivamente con DTOs: la entidad Producto no sale de acá.
 public interface IProductoService
 {
-    /// <summary>Devuelve el catálogo completo como DTOs de respuesta.</summary>
+    // Devuelve el catálogo completo como DTOs de respuesta.
     List<ProductoDto> ObtenerTodos();
 
-    /// <summary>Devuelve un producto por Id, o <c>null</c> si no existe.</summary>
+    // Devuelve un producto por Id, o null si no existe.
     ProductoDto? ObtenerPorId(int id);
 
-    /// <summary>Crea un producto a partir del DTO de entrada y devuelve el DTO de respuesta.</summary>
+    // Crea un producto a partir del DTO de entrada y devuelve el DTO de respuesta.
     ProductoDto Crear(CreateProductoDto dto);
 
-    /// <summary>Actualiza un producto existente. Devuelve <c>null</c> si el Id no existe.</summary>
+    // Actualiza un producto existente. Devuelve null si el Id no existe.
     ProductoDto? Actualizar(int id, CreateProductoDto dto);
 
-    /// <summary>Elimina un producto. Devuelve <c>false</c> si el Id no existe.</summary>
+    // Elimina un producto. Devuelve false si el Id no existe.
     bool Eliminar(int id);
 }

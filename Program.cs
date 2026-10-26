@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.OpenApi;
 using TiendaProductos.Api.Repositories;
 using TiendaProductos.Api.Services;
@@ -25,15 +24,6 @@ builder.Services.AddSwaggerGen(opciones =>
         Description = "Web API RESTful para la gestión de productos (Bloque 2). " +
                       "Arquitectura en 3 capas: Controller -> Service -> Repository."
     });
-
-    // Toma los <summary> de los controladores y DTOs para mostrarlos en Swagger UI.
-    var archivoXml = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var rutaXml = Path.Combine(AppContext.BaseDirectory, archivoXml);
-
-    if (File.Exists(rutaXml))
-    {
-        opciones.IncludeXmlComments(rutaXml);
-    }
 });
 
 var app = builder.Build();

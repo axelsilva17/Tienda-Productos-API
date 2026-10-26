@@ -6,9 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TiendaProductos.Api</RootNamespace>
     <AssemblyName>TiendaProductos.Api</AssemblyName>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <!-- CS1591: no exigimos XML comments en absolutamente todo, solo donde documentamos la API. -->
-    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
